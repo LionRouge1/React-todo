@@ -1,6 +1,6 @@
 # To dos
 "To dos"  refactory with react component 
-[screenshot](./Screenshot at 2022-04-26 14-07-42.png)
+![screenshot](./Screenshot at 2022-04-26 14-07-42.png)
 
 ## Built With
 
