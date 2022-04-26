@@ -1,59 +1,58 @@
-import React, {useState, useEffect} from "react";
-import Header from "./Header";
-import InputTodo from "./InputTodo";
-import TodoList from "./TodosList";
+import React, { useState, useEffect } from 'react';
+import Header from './Header';
+import InputTodo from './InputTodo';
+import TodoList from './TodosList';
 
 const TodoContainer = () => {
+  function getInitialTodos() {
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
+  }
+
   const [todos, setTodos] = useState(getInitialTodos());
 
   useEffect(() => {
-    const temp = JSON.stringify(todos)
-    localStorage.setItem("todos", temp)
-  }, [todos])
-
-  function getInitialTodos() {
-    const temp = localStorage.getItem("todos")
-    const savedTodos = JSON.parse(temp)
-    return savedTodos || []
-  }
+    const temp = JSON.stringify(todos);
+    localStorage.setItem('todos', temp);
+  }, [todos]);
 
   const handleChange = (id) => {
-    setTodos(prevState => prevState.map((todo) => {
+    setTodos((prevState) => prevState.map((todo) => {
       if (todo.id === id) {
         return {
-          ...todo, completed: !todo.completed
-        }
+          ...todo, completed: !todo.completed,
+        };
       }
-      return todo
-    }))
+      return todo;
+    }));
   };
 
   const delTodo = (id) => {
     setTodos([
-        ...todos.filter((todo) => todo.id !== id)
-      ]);
+      ...todos.filter((todo) => todo.id !== id),
+    ]);
   };
 
   const addTodoItem = (title) => {
     const newTodo = {
       id: todos.length + 1,
-      title: title,
-      completed: false
+      title,
+      completed: false,
     };
-    setTodos([...todos, newTodo])
+    setTodos([...todos, newTodo]);
   };
 
   const setUpdate = (updatedTitle, id) => {
-    setTodos( 
+    setTodos(
       todos.map((todo) => {
-        if(todo.id === id) {
+        if (todo.id === id) {
           todo.title = updatedTitle;
         }
-        return todo
-      })
-    )
+        return todo;
+      }),
+    );
   };
-
 
   return (
     <div className="container">
@@ -68,7 +67,7 @@ const TodoContainer = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TodoContainer
+export default TodoContainer;
