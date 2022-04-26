@@ -63,3 +63,35 @@ body {
   outline: none;
   border: none;
 }
+
+.navBar a.active {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(233, 138, 15);
+}
+
+/* about page */
+
+.navBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: palegoldenrod;
+  height: 40px;
+}
+
+.navBar ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navBar ul li {
+  display: block;
+  list-style: none;
+  width: 100px;
+}
+
+.navBar a {
+  font-size: 20px;
+}
