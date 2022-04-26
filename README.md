@@ -1,8 +1,6 @@
-# Math Magicians
-"Math magicians" is a website for all fans of mathematics. It is a Single Page App (SPA) that allows users to:
-
-   - Make simple calculations.
-   - Read a random math-related quote.
+# To dos
+"To dos"  refactory with react component 
+[screenshot](./Screenshot at 2022-04-26 14-07-42.png)
 
 ## Built With
 
