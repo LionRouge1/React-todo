@@ -1,49 +1,45 @@
-/* eslint-disable react/state-in-constructor,react/destructuring-assignment,
- react/destructuring-assignment,react/no-access-state-in-setstate
-  */
-import React, { Component } from 'react';
+import React, { Component } from "react"
 
 class InputTodo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
+      title: ''
     };
   }
 
   onChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { title } = this.state;
-    const { addTodoItem } = this.state;
-    if (title) {
-      addTodoItem(title);
+    if(this.state.title){
+      this.props.addTodoItem(this.state.title);
       this.setState({
-        title: '',
-      });
+      title: '',
+    })
+    }else {
+      alert("please Write item");
     }
   }
 
   render() {
-    const { title } = this.state;
     return (
       <form onSubmit={this.handleSubmit} className="form-container">
-        <input
+        <input 
           type="text"
           className="input-text"
           placeholder="Add Todo..."
-          value={title}
+          value={this.state.title}
           name="title"
           onChange={this.onChange}
         />
-        <button type="button" className="input-submit">Submit</button>
+        <button className="input-submit">Submit</button>
       </form>
-    );
+    )
   }
 }
-export default InputTodo;
+export default InputTodo

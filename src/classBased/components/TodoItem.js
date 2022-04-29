@@ -1,64 +1,64 @@
-/* eslint-disable react/state-in-constructor,react/destructuring-assignment,
- react/destructuring-assignment,react/no-access-state-in-setstate
-  */
-import React, { Component } from 'react';
-import styles from './TodoItem.module.css';
+import React, {Component} from "react";
+import styles from './TodoItem.module.css'
 
 class TodoItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       editing: false,
-    };
+    }
+  };
+
+  componentWillUnmount() {
+    console.log("cleaning up...")
   }
 
   handleEditing = () => {
     this.setState({
       editing: true,
-    });
+    })
   };
 
   handleUpdatedDone = (event) => {
-    if (event.key === 'Enter') {
-      this.setState({ editing: false });
+    if (event.key === "Enter") {
+      this.setState({ editing: false })
     }
   }
 
   render() {
-    const viewMode = {};
-    const editMode = {};
+
+    let viewMode = {}
+    let editMode = {}
 
     if (this.state.editing) {
-      viewMode.display = 'none';
+      viewMode.display = "none"
     } else {
-      editMode.display = 'none';
+      editMode.display = "none"
     }
 
     const completedStyle = {
-      fontStyle: 'italic',
-      color: '#595959',
+      fontStyle: "italic",
+      color: "#595959",
       opacity: 0.4,
-      textDecoration: 'line-through',
-    };
-    const {
-      todo, handleChange, deleteTodo, setUpdate,
-    } = this.props;
-    const { completed, id, title } = todo;
+      textDecoration: "line-through",
+    }
+    const {todo, handleChange, deleteTodo, setUpdate} = this.props;
+    const {completed, id, title} = todo;
     return (
       <li className={styles.item}>
-        <div onDoubleClick={this.handleEditing} style={viewMode}>
-          <input
-            type="checkbox"
+        <div onDoubleClick={this.handleEditing} style={viewMode} >
+          <input 
+            type={"checkbox"}
             className={styles.checkbox}
             checked={completed}
             onChange={() => handleChange(id)}
           />
-          <button type="button" onClick={() => deleteTodo(id)}>Delete</button>
+          <button onClick={() => deleteTodo(id)}>Delete</button>
           <span style={completed ? completedStyle : null}>
             {title}
           </span>
         </div>
-        <input
+        <input 
           type="text"
           className={styles.textInput}
           style={editMode}
@@ -67,8 +67,8 @@ class TodoItem extends Component {
           onKeyDown={this.handleUpdatedDone}
         />
       </li>
-    );
+    )
   }
 }
 
-export default TodoItem;
+export default TodoItem
